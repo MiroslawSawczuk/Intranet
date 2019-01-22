@@ -1,0 +1,13 @@
+﻿using Intranet.Users.Enums;
+
+namespace Intranet.Users.Models
+{
+    public class User
+    {
+        public string Id { get; internal set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public Permission Permission { get; set; }
+    }
+}
