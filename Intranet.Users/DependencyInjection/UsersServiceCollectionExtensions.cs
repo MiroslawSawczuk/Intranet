@@ -1,5 +1,6 @@
 ﻿using System;
 using Intranet.Users.Contexts;
+using Intranet.Users.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,7 @@ namespace Intranet.Users.DependencyInjection
             configuration.Invoke(settings);
 
             services.AddDbContext<UsersContext>(options => options.UseSqlServer(settings.ConnectionString));
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }
