@@ -28,6 +28,9 @@ Obj/
 .vs/
 /wwwroot/dist/
 
+# Jetbrains cache
+.idea/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -230,3 +233,7 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Others
+appsettings.Development.json
+package-lock.json
