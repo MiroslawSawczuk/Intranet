@@ -14,7 +14,8 @@ namespace Intranet.Users.DependencyInjection
             configuration.Invoke(settings);
 
             services.AddDbContext<UsersContext>(options => options.UseSqlServer(settings.ConnectionString));
-            services.AddScoped<IUserRepository, UserRepository>();
+
+            // TODO: add DI for repositories
         }
     }
 }
