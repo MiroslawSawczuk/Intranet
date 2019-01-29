@@ -1,4 +1,5 @@
 using System;
+using Intranet.Authentication.Tokens;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http;
@@ -8,12 +9,19 @@ namespace Intranet.Authentication.DependencyInjection
 {
     public static class AuthenticationServiceCollectionExtensions
     {
-        public static void AddMicrosoftAuthentication(this IServiceCollection services, Action<MicrosoftAuthenticationOptions> configuration)
+        public static void AddMicrosoftAuthentication(this IServiceCollection services, Action<MicrosoftAuthenticationOptions> configuration,
+            Action<JwtTokenOptions> jwtConfiguration)
         {
             var settings = new MicrosoftAuthenticationOptions();
             configuration.Invoke(settings);
 
-            services.AddAuthentication(options => 
+            var jwtSettings = new JwtTokenOptions();
+            jwtConfiguration.Invoke(jwtSettings);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<ITokenBuilder>(t => new TokenBuilder(jwtSettings));
+            services.AddScoped<ITokenUser, TokenUser>();
+
+            services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -22,8 +30,8 @@ namespace Intranet.Authentication.DependencyInjection
                 .AddCookie()
                 .AddJwtBearer(options =>
                 {
-                    options.Audience = "http://localhost:58414/";
-                    options.Authority = "http://localhost:58414/";
+                    options.Audience = jwtSettings.Audience;
+                    options.Authority = jwtSettings.Issuer;
                     options.RequireHttpsMetadata = false;
                 })
                 .AddMicrosoftAccount(microsoftOptions =>

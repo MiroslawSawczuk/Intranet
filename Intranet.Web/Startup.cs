@@ -47,6 +47,17 @@ namespace Intranet.Web
             {
                 configuration.ApplicationId = Configuration["Authentication:Microsoft:ApplicationId"];
                 configuration.Password = Configuration["Authentication:Microsoft:Password"];
+            }, jwtConfiguration =>
+            {
+                jwtConfiguration.Audience = Configuration["Jwt:Audience"];
+                jwtConfiguration.Issuer = Configuration["Jwt:Issuer"];
+                jwtConfiguration.Key = Configuration["Jwt:Key"];
+
+                if (int.TryParse(Configuration["Jwt:ExpireTime:Minutes"], out var minutes)
+                    && int.TryParse(Configuration["Jwt:ExpireTime:Hours"], out var hours))
+                {
+                    jwtConfiguration.Expiration = new TimeSpan(hours, minutes, 0);
+                }
             });
 
             builder.Populate(services);

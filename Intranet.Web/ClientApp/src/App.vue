@@ -5,7 +5,7 @@
 </template>
 
 <script>
-const bootstrap = require('bootstrap/dist/js/bootstrap.js')
+import bootstrap from 'bootstrap/dist/js/bootstrap.js';
 
 import Header from './components/Header/Header.vue';
 
