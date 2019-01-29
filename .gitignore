@@ -24,7 +24,8 @@ Bin/
 obj/
 Obj/
 
-nugets/
+*/nugets/*
+!*/nugets/*.nupkg
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -146,7 +147,7 @@ publish/
 *.publishproj
 
 # NuGet Packages
-*.nupkg
+# *.nupkg # uncomment when needed
 # The packages folder can be ignored because of Package Restore
 **/packages/*
 # except build/, which is used as an MSBuild target.

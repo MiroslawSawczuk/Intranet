@@ -3,11 +3,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <Version>1.0.0.4-dev0004</Version>
+    <Version>1.0.0.7</Version>
   </PropertyGroup>
 
   <PropertyGroup>
-    <OutputPath>E:\Repo\Intranet\Other\BaseRepository\..\nugets</OutputPath>
+    <OutputPath>..\..\nugets</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

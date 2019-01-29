@@ -1,0 +1,26 @@
+﻿Core + (Vue.js + Redux)
+
+- multitenant ???
+- Dapper do pojebanych zapytan
+- logowanie OAuth2
+- Autofac
+- CQRS + EventStorming
+- MongoDB (do stron i bloczkow)
+- SignalR (komenatrze)
+- bootstrap
+- wlasne nugety
+
+Na pozniej:
+- komenatrze + paginacja
+- wersjonowanie stron
+
+7. Logowanie
+2. Bazy - Stron MongoDB
+6. CQRS
+3. nuget
+8. Strony
+9. I RESZTA RZECZY
+
+intranet.fast@outlook.com
+IntranetFast123_
+mswRV38@}imxhLJUEY240%$
