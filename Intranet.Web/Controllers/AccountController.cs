@@ -2,6 +2,7 @@ using System.Linq;
 using System.Security.Claims;
 using Intranet.Authentication.Tokens;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,10 +32,11 @@ namespace Intranet.Web.Controllers
         }
         
         [HttpGet("external-login-callback")] // TODO: implement CQRS command
+        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public IActionResult PostSignIn()
         {
             var user = this.HttpContext.User;
-            
+
             return Ok(tokenBuilder.BuildToken("losowe-id", user.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value));
         }
 

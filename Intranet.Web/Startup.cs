@@ -42,7 +42,7 @@ namespace Intranet.Web
             {
                 configuration.ConnectionString = Configuration["ConnectionStrings:Users"];
             });
-            
+
             services.AddMicrosoftAuthentication(configuration =>
             {
                 configuration.ApplicationId = Configuration["Authentication:Microsoft:ApplicationId"];
