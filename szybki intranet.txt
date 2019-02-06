@@ -3,7 +3,7 @@ Core + (Vue.js + Vuex)
 
 - multitenant ???
 - Dapper do pojebanych zapytan
-- CQRS + Event Sourcing
+- Event Sourcing
 - MongoDB (do stron i bloczkow)
 - SignalR (komenatrze)
 
@@ -13,5 +13,5 @@ Na pozniej:
 
 Kroki:
 2. Bazy - Stron MongoDB
-6. CQRS Event Sourcing
+6. Event Sourcing
 8. Strony

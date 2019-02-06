@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid">
      <Header />
+     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.js';
-
 import Header from './components/Header/Header.vue';
 
 export default {

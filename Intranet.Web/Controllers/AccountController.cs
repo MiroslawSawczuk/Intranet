@@ -8,16 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Intranet.Web.Controllers
 {
-    [Route("account")]
+    [Route("api/account")]
     public class AccountController : Controller
     {
         private readonly IExecutor executor;
-        private readonly ITokenUser tokenUser;
 
-        public AccountController(IExecutor executor, ITokenUser tokenUser)
+        public AccountController(IExecutor executor)
         {
             this.executor = executor;
-            this.tokenUser = tokenUser;
         }
 
         [HttpGet("sign-in")]
@@ -26,12 +24,5 @@ namespace Intranet.Web.Controllers
         [HttpGet("external-login-callback")]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public async Task<IActionResult> LoginCallback(LoginCallbackCommand command) => await executor.HandleAsync(command);
-
-        [HttpGet("test")]
-        [Authorize]
-        public IActionResult Test()
-        {
-            return Ok(tokenUser.Email);
-        }
     }
 }
