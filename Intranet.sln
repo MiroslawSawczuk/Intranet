@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs", "Cqrs\Cqrs.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueCliMiddleware", "VueCliMiddleware\VueCliMiddleware\VueCliMiddleware.csproj", "{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intranet.Logic", "Intranet.Logic\Intranet.Logic.csproj", "{6DE90C6D-F994-4812-8B7F-569827B344D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE90C6D-F994-4812-8B7F-569827B344D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE90C6D-F994-4812-8B7F-569827B344D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE90C6D-F994-4812-8B7F-569827B344D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE90C6D-F994-4812-8B7F-569827B344D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

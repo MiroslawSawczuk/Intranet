@@ -1,7 +1,13 @@
 using System;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Metadata;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Cqrs.Commands;
+using Cqrs.DependencyInjection;
 using Intranet.Authentication.DependencyInjection;
+using Intranet.Logic.CommandHandlers.Account;
 using Intranet.Users.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +47,8 @@ namespace Intranet.Web
             services.AddSqlServerUsers(configuration =>
             {
                 configuration.ConnectionString = Configuration["ConnectionStrings:Users"];
+                configuration.AutoRegister = true;
+                configuration.RepositoriesProjectName = "Intranet.Users";
             });
 
             services.AddMicrosoftAuthentication(configuration =>
@@ -58,6 +66,12 @@ namespace Intranet.Web
                 {
                     jwtConfiguration.Expiration = new TimeSpan(hours, minutes, 0);
                 }
+            });
+            
+            services.AddCqrs(configuration =>
+            {
+                configuration.AutoRegister = true;
+                configuration.HandlersProjectName = "Intranet.Logic";
             });
 
             builder.Populate(services);

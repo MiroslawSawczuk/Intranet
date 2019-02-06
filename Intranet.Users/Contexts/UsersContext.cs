@@ -15,7 +15,6 @@ namespace Intranet.Users.Contexts
         {
             modelBuilder.Entity<User>()
                 .HasKey(u => u.Id);
-            var a = 2;
         }
     }
 }

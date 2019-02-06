@@ -3,8 +3,10 @@ using Cqrs.Validators;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cqrs.Queries;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Cqrs.Executors
 {
@@ -28,7 +30,8 @@ namespace Cqrs.Executors
             }
             commandHandler.Execute(command);
 
-            return commandHandler.Status.HasValue ? new StatusCodeResult(commandHandler.Status.Value)
+            return commandHandler.Status.HasValue ? (IActionResult)new StatusCodeResult(commandHandler.Status.Value)
+                : commandHandler.Body is IActionResult body ? body
                 : commandHandler.Body != null ? (IActionResult)new OkObjectResult(commandHandler.Body)
                 : new OkResult();
         }
@@ -45,6 +48,7 @@ namespace Cqrs.Executors
             await commandHandler.ExecuteAsync(command);
 
             return commandHandler.Status.HasValue ? (IActionResult)new StatusCodeResult(commandHandler.Status.Value)
+                : commandHandler.Body is IActionResult body ? body
                 : commandHandler.Body != null ? (IActionResult)new OkObjectResult(commandHandler.Body)
                 : new OkResult();
         }

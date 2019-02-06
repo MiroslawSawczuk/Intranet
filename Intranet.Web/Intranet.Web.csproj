@@ -23,8 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Intranet.Authentication\Intranet.Authentication.csproj" />
-    <ProjectReference Include="..\Intranet.Users\Intranet.Users.csproj" />
+    <ProjectReference Include="..\Intranet.Logic\Intranet.Logic.csproj" />
     <ProjectReference Include="..\VueCliMiddleware\VueCliMiddleware\VueCliMiddleware.csproj" />
   </ItemGroup>
 

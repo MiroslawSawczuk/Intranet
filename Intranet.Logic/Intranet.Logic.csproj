@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cqrs\Cqrs.csproj" />
+    <ProjectReference Include="..\Intranet.Authentication\Intranet.Authentication.csproj" />
+    <ProjectReference Include="..\Intranet.Users\Intranet.Users.csproj" />
+  </ItemGroup>
+
+</Project>

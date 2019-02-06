@@ -1,9 +1,8 @@
-using System.Linq;
-using System.Security.Claims;
+using System.Threading.Tasks;
+using Cqrs.Executors;
 using Intranet.Authentication.Tokens;
-using Microsoft.AspNetCore.Authentication;
+using Intranet.Logic.CommandHandlers.Account;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,34 +11,21 @@ namespace Intranet.Web.Controllers
     [Route("account")]
     public class AccountController : Controller
     {
-        private readonly ITokenBuilder tokenBuilder;
+        private readonly IExecutor executor;
         private readonly ITokenUser tokenUser;
 
-        public AccountController(ITokenBuilder tokenBuilder, ITokenUser tokenUser)
+        public AccountController(IExecutor executor, ITokenUser tokenUser)
         {
-            this.tokenBuilder = tokenBuilder;
+            this.executor = executor;
             this.tokenUser = tokenUser;
         }
-        
-        [HttpGet("sign-in")]
-        public IActionResult SignIn() // TODO: implement CQRS command
-        {
-            var authenticationProperties = new AuthenticationProperties
-            {
-                RedirectUri = "/account/external-login-callback"
-            };
-            
-            return Challenge(authenticationProperties, "Microsoft");
-        }
-        
-        [HttpGet("external-login-callback")] // TODO: implement CQRS command
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-        public IActionResult PostSignIn()
-        {
-            var user = this.HttpContext.User;
 
-            return Ok(tokenBuilder.BuildToken("losowe-id", user.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value));
-        }
+        [HttpGet("sign-in")]
+        public IActionResult SignIn(SignInCommand command) => executor.Handle(command);
+
+        [HttpGet("external-login-callback")]
+        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> LoginCallback(LoginCallbackCommand command) => await executor.HandleAsync(command);
 
         [HttpGet("test")]
         [Authorize]
