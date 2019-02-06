@@ -13,7 +13,6 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.2" />
-    <PackageReference Include="VueCliMiddleware" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Intranet.Authentication\Intranet.Authentication.csproj" />
     <ProjectReference Include="..\Intranet.Users\Intranet.Users.csproj" />
+    <ProjectReference Include="..\VueCliMiddleware\VueCliMiddleware\VueCliMiddleware.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

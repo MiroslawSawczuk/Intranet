@@ -1,10 +1,12 @@
 using System;
+using System.Text;
 using Intranet.Authentication.Tokens;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Intranet.Authentication.DependencyInjection
 {
@@ -24,18 +26,26 @@ namespace Intranet.Authentication.DependencyInjection
 
             services.AddAuthentication(options =>
                 {
-                    //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    //options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddCookie()
                 .AddJwtBearer(options =>
                 {
-                    options.Audience = jwtSettings.Audience;
-                    options.Authority = jwtSettings.Issuer;
-                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ClockSkew = TimeSpan.Zero,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+                        RequireSignedTokens = true,
+                        RequireExpirationTime = true,
+                        ValidateLifetime = true,
+                        ValidateAudience = true,
+                        ValidAudience = jwtSettings.Audience,
+                        ValidateIssuer = true,
+                        ValidIssuer = jwtSettings.Issuer
+                    };
+
                 })
                 .AddMicrosoftAccount(microsoftOptions =>
                 {

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intranet.Authentication", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cqrs", "Cqrs\Cqrs.csproj", "{260C7233-F6AB-4568-9FDC-C01D5BA3E2FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueCliMiddleware", "VueCliMiddleware\VueCliMiddleware\VueCliMiddleware.csproj", "{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{260C7233-F6AB-4568-9FDC-C01D5BA3E2FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{260C7233-F6AB-4568-9FDC-C01D5BA3E2FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{260C7233-F6AB-4568-9FDC-C01D5BA3E2FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11A62A7-38DF-46DF-BDD4-F46A8F89C3D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using Intranet.Authentication.Tokens;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,8 +41,8 @@ namespace Intranet.Web.Controllers
             return Ok(tokenBuilder.BuildToken("losowe-id", user.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value));
         }
 
-        [Authorize]
         [HttpGet("test")]
+        [Authorize]
         public IActionResult Test()
         {
             return Ok(tokenUser.Email);
