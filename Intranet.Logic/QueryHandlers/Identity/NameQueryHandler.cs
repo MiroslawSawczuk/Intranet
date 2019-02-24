@@ -31,7 +31,7 @@ namespace Intranet.Logic.QueryHandlers.Identity
         {
             return await readUserRepository.GetAsync(
                 where: u => u.Id.Equals(tokenUser.Id),
-                select: u => u.FirstName);
+                select: u => u.FirstName ?? u.Email);
         }
     }
 }

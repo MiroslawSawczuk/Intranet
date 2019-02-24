@@ -1,12 +1,11 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import App from './App.vue';
 import routes from './routes.js';
 import VueResource from 'vue-resource';
+import store from "./store";
 
 Vue.config.productionTip = false;
-Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
@@ -24,5 +23,6 @@ const router = new VueRouter({
 
 new Vue({
   render: h => h(App),
-  router: router
+  router: router,
+  store: store,
 }).$mount('#app');

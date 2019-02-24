@@ -1,7 +1,15 @@
-import Homepage from './components/Body/Homepage.vue';
-import Postlogin from './components/Header/Postlogin.vue';
+import HomePage from './views/HomePage.vue';
+import PostLogin from './views/PostLogin.vue';
 
 export default [
-  { path: '/', component: Homepage },
-  { path: '/login-post', component: Postlogin }
+  { 
+    name: 'home',
+    path: '/',
+    component: HomePage 
+  },
+  { 
+    name: 'postlogin',
+    path: '/login-post',
+    component: PostLogin
+   }
 ]
