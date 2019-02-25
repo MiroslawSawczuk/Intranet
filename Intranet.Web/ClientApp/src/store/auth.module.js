@@ -1,6 +1,6 @@
 import IdentityService from '@/services/identity.service';
-import { AUTH_LOGIN, AUTH_FETCH } from '@/store/actions';
-import { SET_AUTH, SET_NAME } from '@/store/mutations';
+import { AUTH_LOGIN, AUTH_FETCH, LOGOUT } from '@/store/actions';
+import { SET_AUTH, SET_NAME, REMOVE_TOKEN } from '@/store/mutations';
 
 const state = {
   userName: '',
@@ -24,6 +24,9 @@ const actions = {
     return IdentityService.name().then(response => {
       context.commit(SET_NAME, response.body);
     });
+  },
+  [LOGOUT] (context) {
+    return context.commit(REMOVE_TOKEN);
   }
 };
 
@@ -34,6 +37,11 @@ const mutations = {
   },
   [SET_NAME] (state, name) {
     state.userName = name;
+  },
+  [REMOVE_TOKEN] (state) {
+    localStorage.removeItem("token");
+    state.userName = '';
+    state.isAuthenticated = false;
   }
 };
 
