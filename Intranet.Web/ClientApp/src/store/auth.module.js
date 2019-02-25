@@ -1,6 +1,6 @@
 import IdentityService from '@/services/identity.service';
 import { AUTH_LOGIN, AUTH_FETCH } from '@/store/actions';
-import { SET_AUTH, SET_NAME } from '@/store/mutations';
+import { SET_AUTH, SET_NAME, AUTH_LOGOUT } from '@/store/mutations';
 
 const state = {
   userName: '',
@@ -34,6 +34,11 @@ const mutations = {
   },
   [SET_NAME] (state, name) {
     state.userName = name;
+  },
+  [AUTH_LOGOUT] (state) {
+    localStorage.removeItem('token');
+    state.userName = '';
+    state.isAuthenticated = false;
   }
 };
 

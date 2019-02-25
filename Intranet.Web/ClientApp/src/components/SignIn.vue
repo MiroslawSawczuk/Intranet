@@ -24,14 +24,13 @@
 <script>
 import { mapState } from 'vuex';
 import { AUTH_FETCH } from '@/store/actions';
+import { AUTH_LOGOUT } from '@/store/mutations';
 
 export default {
   name: 'SignIn',
   methods:{
     logout() {
-      // usunięcie tokena w local storage
-      // usunięcie tokena na backendzie
-      // przekierownie w button na <a href='homepage'>
+      this.$store.commit(AUTH_LOGOUT)
     }
   },
   created() {
