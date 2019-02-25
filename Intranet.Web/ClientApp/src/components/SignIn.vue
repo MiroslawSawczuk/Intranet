@@ -35,7 +35,7 @@ export default {
   },
   created() {
     if (localStorage.token) {
-      this.$store.dispatch(AUTH_LOGOUT);
+      this.$store.dispatch(AUTH_FETCH);
     }
   },
   computed: {
