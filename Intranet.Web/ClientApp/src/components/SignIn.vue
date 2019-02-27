@@ -23,17 +23,19 @@
 
 <script>
 import { mapState } from 'vuex';
+import { AUTH_FETCH, AUTH_LOGOUT } from './../store/mutations.js';
+
 
 export default {
   name: 'SignIn',
   methods:{
     logout() {
-      this.$store.commit('auth_logout')
+      this.$store.commit(AUTH_LOGOUT)
     }
   },
   created() {
     if (localStorage.token) {
-      this.$store.commit('auth_fetch')
+      this.$store.commit(AUTH_FETCH)
     }
   },
   computed: {

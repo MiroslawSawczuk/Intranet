@@ -2,11 +2,12 @@
 </template>
 
 <script>
+import { AUTH_LOGIN } from './../store/mutations.js';
 
 export default {
   name: 'PostLogin',
   created() {
-    this.$store.commit('auth_login')
+    this.$store.commit(AUTH_LOGIN)
     this.$router.push({ name: 'home' });
   }
 }

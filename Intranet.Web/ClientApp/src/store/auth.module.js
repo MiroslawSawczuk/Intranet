@@ -1,4 +1,5 @@
 import IdentityService from '@/services/identity.service';
+import { AUTH_LOGIN, AUTH_FETCH, AUTH_LOGOUT } from './mutations.js';
 
 const state = {
   userName: '',
@@ -10,7 +11,7 @@ const actions = {
 };
 
 const mutations = {
-  auth_login (state) {
+  [AUTH_LOGIN] (state) {
     IdentityService.loginCallback().then(response => {
       localStorage.token = response.body;
       IdentityService.name().then(response2 => {
@@ -19,12 +20,12 @@ const mutations = {
       });
     });
   },
-  auth_fetch (state) {
+  [AUTH_FETCH] (state) {
     IdentityService.name().then(response => {
       state.userName = response.body;
     });
   },
-  auth_logout (state) {
+  [AUTH_LOGOUT] (state) {
     localStorage.removeItem('token');
     state.userName = '';
     state.isAuthenticated = false;
@@ -32,7 +33,8 @@ const mutations = {
 };
 
 const getters = {
-
+    name: state => state.auth.userName
+    //name: state => state.userName
 };
 
 export default {
