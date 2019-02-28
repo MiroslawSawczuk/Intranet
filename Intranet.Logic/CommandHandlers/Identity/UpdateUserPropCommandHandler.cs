@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BaseRepository.Repositories;
@@ -34,7 +35,8 @@ namespace Intranet.Logic.CommandHandlers.Account
 
         public override async Task ValidateAsync(UpdateUserPropCommand command, IValidationResult validationResult)
         {
-            //zrobiæ walidacjê czy propertisy z commanda String.IsNullOrWhitespace()
+            if(String.IsNullOrWhiteSpace(command.FirstName) || String.IsNullOrWhiteSpace(command.LastName))
+                validationResult.AddError("Some of passed parameters are empty.");
             await Task.CompletedTask;
         }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    Witamy w Panelu administratora!
+    Welcome to the Administrator Panel!
     <br/>
     <br/>
     <user-prop-edit />

@@ -1,0 +1,1 @@
+export const AUTH_USERNAME  = 'AUTH_USERNAME'; 
