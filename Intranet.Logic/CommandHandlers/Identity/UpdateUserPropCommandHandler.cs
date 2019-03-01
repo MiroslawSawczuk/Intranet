@@ -6,6 +6,7 @@ using BaseRepository.Repositories;
 using Cqrs.Commands;
 using Cqrs.Validators;
 using Intranet.Authentication.Tokens;
+using Intranet.Logic.Extensions;
 using Intranet.Users.Models;
 using Microsoft.AspNetCore.Http;
 
@@ -35,7 +36,7 @@ namespace Intranet.Logic.CommandHandlers.Account
 
         public override async Task ValidateAsync(UpdateUserPropCommand command, IValidationResult validationResult)
         {
-            if(String.IsNullOrWhiteSpace(command.FirstName) || String.IsNullOrWhiteSpace(command.LastName))
+            if(command.FirstName.IsNullOrWhiteSpace() || command.LastName.IsNullOrWhiteSpace())
                 validationResult.AddError("Some of passed parameters are empty.");
             await Task.CompletedTask;
         }
