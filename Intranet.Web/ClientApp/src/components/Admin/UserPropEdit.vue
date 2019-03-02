@@ -6,8 +6,8 @@
     <br/>
     <br/>
 
-    <!-- <form v-if="toggleUserProp" class="user-prop-form, col-md-4" v-bind:class="[formValid ? 'was-validated' : '', 'user-prop-form', 'col-md-4']"> -->
-    <div v-if="toggleUserProp" class="user-prop-form, col-md-4">
+    <!-- <form v-if="showUserProp" class="user-prop-form, col-md-4" v-bind:class="[formValid ? 'was-validated' : '', 'user-prop-form', 'col-md-4']"> -->
+    <div v-if="showUserProp" class="user-prop-form, col-md-4">
       <div class="form-group">
         <label for="email">email</label><br/>
         <input v-model="email" class="form-control" type="text" disabled/>
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import { AUTH_FETCH } from './../store/mutations.js';
+import { AUTH_FETCH } from './../../store/mutations.js';
 
 export default {
   name: 'UserPropEdit',
   data() {
     return {
-      toggleUserProp: false,
+      showUserProp: false,
       email: '',
       firstName:'',
       lastName:'',
@@ -41,13 +41,15 @@ export default {
   },
   methods: {
     fetch: function() {
-      this.$http.get('api/identity/userProp').then(response => 
+      if (!this.showUserProp) {
+        this.$http.get('api/identity/userProp').then(response => 
         {
           this.email = response.body.email;
           this.firstName = response.body.firstName;
           this.lastName = response.body.lastName;
-          this.toggleUserProp = !this.toggleUserProp;
         });
+      }
+        this.showUserProp = !this.showUserProp;
     },
     save: function() {
       if (this.firstName && this.lastName) 
@@ -58,7 +60,7 @@ export default {
           LastName: this.lastName
         })
         .then(response => {
-          this.toggleUserProp = false;
+          this.showUserProp = false;
           this.$store.commit(AUTH_FETCH);
         })
       }

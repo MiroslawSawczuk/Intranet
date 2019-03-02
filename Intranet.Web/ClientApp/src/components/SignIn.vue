@@ -2,7 +2,7 @@
   <div>
     <div v-if="!name" class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Zaloguj się
+        SIgn In 
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="/api/account/sign-in">Microsoft</a>
@@ -11,11 +11,11 @@
 
     <div v-else>
       <span class="navbar-text">
-        Witaj {{ name }}!
+        Hello {{ name }}!
       </span>
       &nbsp;
       <button  v-on:click="logout()" class="btn btn-secondary" type="button" >
-       Wyloguj
+       Log out
       </button>
     </div>
   </div>
@@ -43,10 +43,6 @@ export default {
     ...mapState({
       name: state => state.auth.userName
     })
-
-    // ...mapState({
-    //   name: AUTH_USERNAME
-    // })
   }
 }
 </script>

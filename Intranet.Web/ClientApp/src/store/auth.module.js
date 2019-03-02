@@ -1,6 +1,5 @@
 import IdentityService from '@/services/identity.service';
 import { AUTH_LOGIN, AUTH_FETCH, AUTH_LOGOUT } from './mutations.js';
-import { AUTH_USERNAME } from './getters.js';
 
 const state = {
   userName: '',
@@ -34,7 +33,8 @@ const mutations = {
 };
 
 const getters = {
-  name: state => state.auth.userName
+  name: state => state.auth.userName,
+  isAuthenticated: state => state.auth.isAuthenticated
 };
 
 export default {
