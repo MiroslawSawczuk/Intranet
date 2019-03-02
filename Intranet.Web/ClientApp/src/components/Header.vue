@@ -38,14 +38,8 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Header',
-  data() {
-    return {
-    }
-  },
   components: {
     SignIn
-  },
-  created() {
   },
   computed: {
     ...mapState({

@@ -1,19 +1,19 @@
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using BaseRepository.Repositories;
 using Cqrs.Commands;
 using Cqrs.Validators;
 using Intranet.Authentication.Tokens;
 using Intranet.Users.Models;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Intranet.Logic.CommandHandlers.Account
 {
     public class LoginCallbackCommand : ICommand
     {
     }
-    
+
     internal class LoginCallbackCommandHandler : AsyncCommandHandlerBase<LoginCallbackCommand>
     {
         private readonly IHttpContextAccessor httpContextAccessor;

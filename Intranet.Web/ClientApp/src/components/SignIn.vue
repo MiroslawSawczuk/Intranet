@@ -24,8 +24,6 @@
 <script>
 import { mapState } from 'vuex';
 import { AUTH_FETCH, AUTH_LOGOUT } from './../store/mutations.js';
-// import { AUTH_USERNAME } from './../store/getters.js';
-
 
 export default {
   name: 'SignIn',

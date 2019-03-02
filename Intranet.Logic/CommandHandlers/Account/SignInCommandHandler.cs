@@ -1,15 +1,15 @@
-using System.Collections.Generic;
 using Cqrs.Commands;
 using Cqrs.Validators;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Intranet.Logic.CommandHandlers.Account
 {
     public class SignInCommand : ICommand
     {
     }
-    
+
     internal class SignInCommandHandler : CommandHandlerBase<SignInCommand>
     {
         public override void Validate(SignInCommand command, IValidationResult validationResult)
@@ -23,7 +23,7 @@ namespace Intranet.Logic.CommandHandlers.Account
                 RedirectUri = "/login-post"
             };
 
-            Body = new ChallengeResult(new List<string> {"Microsoft"}, authenticationProperties);
+            Body = new ChallengeResult(new List<string> { "Microsoft" }, authenticationProperties);
         }
     }
 }

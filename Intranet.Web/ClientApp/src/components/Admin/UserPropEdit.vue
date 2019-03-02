@@ -6,11 +6,10 @@
     <br/>
     <br/>
 
-    <!-- <form v-if="showUserProp" class="user-prop-form, col-md-4" v-bind:class="[formValid ? 'was-validated' : '', 'user-prop-form', 'col-md-4']"> -->
     <div v-if="showUserProp" class="user-prop-form, col-md-4">
       <div class="form-group">
         <label for="email">email</label><br/>
-        <input v-model="email" class="form-control" type="text" disabled/>
+        <input v-model="email" class="form-control" placeholder="Enter email" type="text" disabled/>
       </div>
       <div class="form-group">
         <label for="firstName">name</label><br/>
@@ -71,13 +70,13 @@ export default {
         })
         .then(response => {
           this.$store.commit(AUTH_FETCH);
+          this.showUserProp = false;
+
           swal({
               title: 'Success',
               text: 'The data has been correctly saved',
               icon: "success",
             });
-
-          this.showUserProp = false;
         }, response => {
             swal({
               title: 'Ups',
@@ -91,5 +90,5 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 </style>

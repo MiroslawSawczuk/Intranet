@@ -12,7 +12,6 @@ Vue.use(VueResource);
 
 Vue.http.interceptors.push(request => {
   if (localStorage.token) {
-    // request.method = 'GET';
     request.headers.set('Authorization', `Bearer ${localStorage.token}`);
   }
 });

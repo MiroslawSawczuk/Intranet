@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using BaseRepository.Repositories;
+﻿using BaseRepository.Repositories;
 using Cqrs.Commands;
 using Cqrs.Validators;
 using Intranet.Authentication.Tokens;
 using Intranet.Logic.Extensions;
 using Intranet.Users.Models;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Intranet.Logic.CommandHandlers.Account
 {
@@ -36,7 +35,7 @@ namespace Intranet.Logic.CommandHandlers.Account
 
         public override async Task ValidateAsync(UpdateUserPropCommand command, IValidationResult validationResult)
         {
-            if(command.FirstName.IsNullOrWhiteSpace() || command.LastName.IsNullOrWhiteSpace())
+            if (command.FirstName.IsNullOrWhiteSpace() || command.LastName.IsNullOrWhiteSpace())
                 validationResult.AddError("Some of passed parameters are empty.");
             await Task.CompletedTask;
         }

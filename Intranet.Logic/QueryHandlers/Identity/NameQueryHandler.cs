@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
 using BaseRepository.Repositories;
 using Cqrs.Queries;
 using Cqrs.Validators;
 using Intranet.Authentication.Tokens;
 using Intranet.Users.Models;
+using System.Threading.Tasks;
 
 namespace Intranet.Logic.QueryHandlers.Identity
 {
