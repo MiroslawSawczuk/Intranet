@@ -2,7 +2,7 @@
   <div>
     <div v-if="!name" class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        SIgn In 
+        Sign In 
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="/api/account/sign-in">Microsoft</a>

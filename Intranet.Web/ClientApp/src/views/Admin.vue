@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid">
+  <div class="container-fluid">
     <div v-if="isAuthenticated">
       Welcome to the Administrator Panel!
       <br/>
@@ -14,7 +14,7 @@
 
 <script>
 import UserPropEdit from './../components/Admin/UserPropEdit.vue'
-import IdentityService from '@/services/identity.service';
+import { mapState } from 'vuex';
 
 export default {
   name: 'app',
@@ -27,7 +27,9 @@ export default {
     UserPropEdit
   },
   computed: {
-    isAuthenticated : IdentityService.isAuthenticated
+    ...mapState({
+      isAuthenticated: state => state.auth.isAuthenticated
+    })
   }
 }
 </script>

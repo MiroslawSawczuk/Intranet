@@ -47,9 +47,19 @@ export default {
           this.email = response.body.email;
           this.firstName = response.body.firstName;
           this.lastName = response.body.lastName;
+
+          this.showUserProp = true;
+        }, response => {
+            swal({
+              title: 'Ups',
+              text: 'An error occurs with fetching the data',
+              icon: "error",
+            });
         });
       }
-        this.showUserProp = !this.showUserProp;
+      else{
+        this.showUserProp = false;
+      }
     },
     save: function() {
       if (this.firstName && this.lastName) 
@@ -60,9 +70,21 @@ export default {
           LastName: this.lastName
         })
         .then(response => {
-          this.showUserProp = false;
           this.$store.commit(AUTH_FETCH);
-        })
+          swal({
+              title: 'Success',
+              text: 'The data has been correctly saved',
+              icon: "success",
+            });
+
+          this.showUserProp = false;
+        }, response => {
+            swal({
+              title: 'Ups',
+              text: 'An error occurs with with saving the data',
+              icon: "error",
+            });
+        });
       }
     }
   }
