@@ -4,6 +4,7 @@ import App from './App.vue';
 import routes from './routes.js';
 import VueResource from 'vue-resource';
 import store from './store/store.js';
+import swal from 'sweetalert';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
