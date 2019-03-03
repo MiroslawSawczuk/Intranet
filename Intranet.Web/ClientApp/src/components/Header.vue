@@ -34,7 +34,7 @@
 
 <script>
 import SignIn from './SignIn.vue';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'Header',
@@ -42,8 +42,8 @@ export default {
     SignIn
   },
   computed: {
-    ...mapState({
-      isAuthenticated: state => state.auth.isAuthenticated
+    ...mapState({ // TODO: refactor to getters
+      isAuthenticated: state => state.identity.isAuthenticated
     })
   }
 }

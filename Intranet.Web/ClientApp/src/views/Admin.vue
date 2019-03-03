@@ -22,8 +22,8 @@ export default {
     UserPropEdit
   },
   computed: {
-    ...mapState({
-      isAuthenticated: state => state.auth.isAuthenticated
+    ...mapState({ // TODO: refactor to getters
+      isAuthenticated: state => state.identity.isAuthenticated
     })
   }
 }

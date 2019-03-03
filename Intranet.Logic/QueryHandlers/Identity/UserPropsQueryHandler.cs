@@ -7,31 +7,31 @@ using System.Threading.Tasks;
 
 namespace Intranet.Logic.QueryHandlers.Identity
 {
-    public class UserPropQuery : IQuery<UserPropDTO>
+    public class UserPropsQuery : IQuery<UserPropsDto>
     {
     }
 
-    internal class UserPropQueryHandler : AsyncQueryHandlerBase<UserPropQuery, UserPropDTO>
+    internal class UserPropsQueryHandler : AsyncQueryHandlerBase<UserPropsQuery, UserPropsDto>
     {
         private readonly ITokenUser tokenUser;
         private readonly IReadRepository<User> readUserRepository;
 
-        public UserPropQueryHandler(ITokenUser tokenUser, IReadRepository<User> readUserRepository)
+        public UserPropsQueryHandler(ITokenUser tokenUser, IReadRepository<User> readUserRepository)
         {
             this.tokenUser = tokenUser;
             this.readUserRepository = readUserRepository;
         }
 
-        public override async Task ValidateAsync(UserPropQuery query, IValidationResult validationResult)
+        public override async Task ValidateAsync(UserPropsQuery query, IValidationResult validationResult) // TODO: move validation to another class
         {
             await Task.CompletedTask;
         }
 
-        public override async Task<UserPropDTO> ExecuteAsync(UserPropQuery query)
+        public override async Task<UserPropsDto> ExecuteAsync(UserPropsQuery query)
         {
             return await readUserRepository.GetAsync(
                 where: u => u.Id.Equals(tokenUser.Id),
-                select: u => new UserPropDTO()
+                select: u => new UserPropsDto
                 {
                     Email = u.Email,
                     FirstName = u.FirstName,
@@ -40,7 +40,7 @@ namespace Intranet.Logic.QueryHandlers.Identity
         }
     }
 
-    public class UserPropDTO
+    public class UserPropsDto
     {
         public string Email { get; set; }
         public string FirstName { get; set; }
