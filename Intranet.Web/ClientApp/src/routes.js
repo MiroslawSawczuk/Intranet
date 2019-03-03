@@ -14,7 +14,7 @@ export default [
     component: PostLogin
   },
   { 
-   name: 'admin',
+   name: 'admin', // TODO: add router guard with permissions check
    path: '/admin',
    component: Admin
   }
