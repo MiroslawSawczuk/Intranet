@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({ // TODO: refactor to getters
+    ...mapState({ 
       firstName: state => state.identity.firstName
     })
   }

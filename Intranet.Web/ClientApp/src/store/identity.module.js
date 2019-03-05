@@ -33,10 +33,10 @@ const mutations = {
       state.lastName = response.body.lastName;
     });
   },
-  [IDENTITY_UPDATE] (state, firstName, lastName) {
-    IdentityService.updateUserProps(firstName, lastName).then(response => {
-      state.firstName = response.body.firstName;
-      state.lastName = response.body.lastName;
+  [IDENTITY_UPDATE] (state, userProps) {
+    IdentityService.updateUserProps(userProps.firstName, userProps.lastName).then(() => {
+      state.firstName = userProps.firstName;
+      state.lastName = userProps.lastName;
 
       swal({
         title: 'Success',
@@ -47,15 +47,15 @@ const mutations = {
   }
 };
 
-const getters = {
-  email: state => state.identity.email,
-  firstName: state => state.identity.firstName,
-  lastName: state => state.identity.lastName,
-  isAuthenticated: state => state.identity.isAuthenticated
-};
+// const getters = {
+//   email: state => state.identity.email,
+//   firstName: state => state.identity.firstName,
+//   lastName: state => state.identity.lastName,
+//   isAuthenticated: state => state.identity.isAuthenticated
+// };
 
 export default {
   state,
-  mutations,
-  getters
+  mutations
+  // getters
 };

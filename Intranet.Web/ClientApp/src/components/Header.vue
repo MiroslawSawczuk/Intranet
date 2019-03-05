@@ -42,7 +42,7 @@ export default {
     SignIn
   },
   computed: {
-    ...mapState({ // TODO: refactor to getters
+    ...mapState({ 
       isAuthenticated: state => state.identity.isAuthenticated
     })
   }

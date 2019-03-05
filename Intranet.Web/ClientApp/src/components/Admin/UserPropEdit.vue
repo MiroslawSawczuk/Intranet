@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { IDENTITY_UPDATE } from '@/store/mutations.js';
+import { IDENTITY_UPDATE, IDENTITY_FETCH } from '@/store/mutations.js';
 import { mapState } from 'vuex';
 
 export default {
@@ -39,13 +39,14 @@ export default {
     }
   },
   methods: {
-    fetch: function() {
+    fetch() {
       this.showUserProp = !this.showUserProp;
+      this.$store.commit(IDENTITY_FETCH)
     },
-    save: function() {
+    save() {
       if (this.firstNameEdit && this.lastNameEdit) {
-        this.$store.commit(IDENTITY_UPDATE, this.firstNameEdit, this.lastNameEdit);
-      } // TODO: make IDENTITY_UPDATE as an action, reroute to homepage at the end of update
+        this.$store.commit(IDENTITY_UPDATE, { firstName: this.firstNameEdit, lastName: this.lastNameEdit });
+      }
     }
   },
   watch: {
@@ -57,7 +58,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({ // TODO: refactor to getters
+    ...mapState({ 
       email: state => state.identity.email,
       firstName: state => state.identity.firstName,
       lastName: state => state.identity.lastName,
