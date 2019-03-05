@@ -8,11 +8,13 @@
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.js';
 import Header from './components/Header.vue';
+import Admin from './views/Admin.vue';
 
 export default {
   name: 'app',
   components: {
-    Header
+    Header,
+    Admin
   }
 }
 </script>
