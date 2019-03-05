@@ -7,7 +7,7 @@ namespace Cqrs.Commands
         public int? Status { get; protected set; }
         public object Body { get; protected set; }
         
-        public abstract void Validate(TCommand command, IValidationResult validationResult);
+        public virtual void Validate(TCommand command, IValidationResult validationResult) { }
         public abstract void Execute(TCommand command);
     }
 }

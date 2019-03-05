@@ -8,7 +8,10 @@ namespace Cqrs.Commands
         public int? Status { get; protected set; }
         public object Body { get; protected set; }
 
-        public abstract Task ValidateAsync(TCommand command, IValidationResult validationResult);
+        public virtual async Task ValidateAsync(TCommand command, IValidationResult validationResult)
+        {
+            await Task.CompletedTask;
+        }
         public abstract Task ExecuteAsync(TCommand command);
     }
 }
