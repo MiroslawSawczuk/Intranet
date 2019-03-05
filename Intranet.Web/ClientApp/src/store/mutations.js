@@ -1,3 +1,4 @@
-export const SET_AUTH  = 'SET_AUTH';
-export const SET_NAME  = 'SET_NAME';
-export const AUTH_LOGOUT  = 'AUTH_LOGOUT';
+export const IDENTITY_LOGIN  = 'IDENTITY_LOGIN';
+export const IDENTITY_LOGOUT  = 'IDENTITY_LOGOUT';
+export const IDENTITY_FETCH  = 'IDENTITY_FETCH';
+export const IDENTITY_UPDATE  = 'IDENTITY_UPDATE';
