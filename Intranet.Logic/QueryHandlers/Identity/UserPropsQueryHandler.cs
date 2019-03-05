@@ -22,7 +22,7 @@ namespace Intranet.Logic.QueryHandlers.Identity
             this.readUserRepository = readUserRepository;
         }
 
-        public override async Task ValidateAsync(UserPropsQuery query, IValidationResult validationResult) // TODO: move validation to another class
+        public override async Task ValidateAsync(UserPropsQuery query, IValidationResult validationResult)
         {
             await Task.CompletedTask;
         }

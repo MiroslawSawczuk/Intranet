@@ -5,7 +5,10 @@ namespace Cqrs.Queries
 {
     public abstract class AsyncQueryHandlerBase<TQuery, TResult> : IAsyncQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
-        public abstract Task ValidateAsync(TQuery query, IValidationResult validationResult);
+        public virtual async Task ValidateAsync(TQuery query, IValidationResult validationResult)
+        {
+            await Task.CompletedTask;
+        }
         public abstract Task<TResult> ExecuteAsync(TQuery query);
     }
 }
