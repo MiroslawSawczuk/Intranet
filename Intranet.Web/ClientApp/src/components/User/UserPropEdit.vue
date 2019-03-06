@@ -9,7 +9,7 @@
     <div v-if="showUserProp" class="user-prop-form col-md-4">
       <div class="form-group">
         <label for="email">Email</label><br/>
-        <input :value="email" class="form-control" placeholder="Enter email" type="text" disabled/>
+        <input :value="emailEdit" class="form-control" placeholder="Enter email" type="text" disabled/>
       </div>
       <div class="form-group">
         <label for="firstNameEdit">Name</label><br/>
@@ -40,21 +40,20 @@ export default {
   },
   methods: {
     fetch() {
+      if (!this.showUserProp) {
+        this.$store.commit(IDENTITY_FETCH);
+
+        this.emailEdit = this.email;
+        this.firstNameEdit = this.firstName;
+        this.lastNameEdit = this.lastName;
+      } 
       this.showUserProp = !this.showUserProp;
-      this.$store.commit(IDENTITY_FETCH)
     },
     save() {
       if (this.firstNameEdit && this.lastNameEdit) {
         this.$store.commit(IDENTITY_UPDATE, { firstName: this.firstNameEdit, lastName: this.lastNameEdit });
+        this.showUserProp = !this.showUserProp;
       }
-    }
-  },
-  watch: {
-    firstName() {
-      this.firstNameEdit = this.firstName;
-    },
-    lastName() {
-      this.lastNameEdit = this.lastName;
     }
   },
   computed: {
