@@ -41,12 +41,13 @@ export default {
   methods: {
     fetch() {
       if (!this.showUserProp) {
-        this.$store.commit(IDENTITY_FETCH);
-
+        if (!this.email || !this.firstName || !this.lastName){
+          this.$store.commit(IDENTITY_FETCH);
+        }
         this.emailEdit = this.email;
         this.firstNameEdit = this.firstName;
         this.lastNameEdit = this.lastName;
-      } 
+      }
       this.showUserProp = !this.showUserProp;
     },
     save() {
