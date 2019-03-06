@@ -12,10 +12,6 @@ namespace Intranet.Logic.CommandHandlers.Account
 
     internal class SignInCommandHandler : CommandHandlerBase<SignInCommand>
     {
-        public override void Validate(SignInCommand command, IValidationResult validationResult)
-        {
-        }
-
         public override void Execute(SignInCommand command)
         {
             var authenticationProperties = new AuthenticationProperties

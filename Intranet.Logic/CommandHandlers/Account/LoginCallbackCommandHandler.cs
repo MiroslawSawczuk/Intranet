@@ -29,12 +29,7 @@ namespace Intranet.Logic.CommandHandlers.Account
             this.writeUserRepository = writeUserRepository;
             this.readUserRepository = readUserRepository;
         }
-
-        public override async Task ValidateAsync(LoginCallbackCommand command, IValidationResult validationResult)
-        {
-            await Task.CompletedTask;
-        }
-
+        
         public override async Task ExecuteAsync(LoginCallbackCommand command)
         {
             var userEmail = httpContextAccessor.HttpContext.User.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value;
