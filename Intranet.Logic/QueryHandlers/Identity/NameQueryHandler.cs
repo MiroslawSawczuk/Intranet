@@ -22,11 +22,6 @@ namespace Intranet.Logic.QueryHandlers.Identity
             this.readUserRepository = readUserRepository;
         }
 
-        public override async Task ValidateAsync(NameQuery query, IValidationResult validationResult)
-        {
-            await Task.CompletedTask;
-        }
-
         public override async Task<string> ExecuteAsync(NameQuery query)
         {
             return await readUserRepository.GetAsync(

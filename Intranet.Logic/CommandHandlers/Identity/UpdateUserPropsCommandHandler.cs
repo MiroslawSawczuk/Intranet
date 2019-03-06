@@ -23,12 +23,7 @@ namespace Intranet.Logic.CommandHandlers.Identity
             this.tokenUser = tokenUser;
             this.writeUserRepository = writeUserRepository;
         }
-
-        public override async Task ValidateAsync(UpdateUserPropsCommand command, IValidationResult validationResult)
-        {
-            await Task.CompletedTask;
-        }
-
+        
         public override async Task ExecuteAsync(UpdateUserPropsCommand command)
         {
             await writeUserRepository.UpdateAsync(
