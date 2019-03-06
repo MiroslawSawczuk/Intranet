@@ -47,15 +47,7 @@ const mutations = {
   }
 };
 
-// const getters = {
-//   email: state => state.identity.email,
-//   firstName: state => state.identity.firstName,
-//   lastName: state => state.identity.lastName,
-//   isAuthenticated: state => state.identity.isAuthenticated
-// };
-
 export default {
   state,
   mutations
-  // getters
 };

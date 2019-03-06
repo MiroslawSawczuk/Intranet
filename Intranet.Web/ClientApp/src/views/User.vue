@@ -1,19 +1,19 @@
 <template>
   <div class="container-fluid">
     <div v-if="isAuthenticated">
-      Welcome to the Administrator Panel!
+      Welcome to the User Panel!
       <br/>
       <br/>
       <user-prop-edit />
     </div>
     <div v-else>
-      Sorry you must be logged to use Administrator Panel!
+      Sorry you must be logged to use User Panel!
     </div>
   </div>
 </template>
 
 <script>
-import UserPropEdit from './../components/Admin/UserPropEdit.vue'
+import UserPropEdit from './../components/User/UserPropEdit.vue'
 import { mapState } from 'vuex';
 
 export default {

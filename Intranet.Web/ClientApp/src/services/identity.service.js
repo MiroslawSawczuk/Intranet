@@ -10,6 +10,6 @@ export default {
     return Vue.http.get(`${url}/user-props`);
   },
   updateUserProps(firstName, lastName) {
-    return Vue.http.patch('api/identity/update-user-props', { firstName, lastName });
+    return Vue.http.patch(`${url}/update-user-props`, { firstName, lastName });
   }
 }

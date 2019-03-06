@@ -1,6 +1,6 @@
 import HomePage from './views/HomePage.vue';
 import PostLogin from './views/PostLogin.vue';
-import Admin from './views/Admin.vue';
+import User from './views/User.vue';
 
 export default [
   { 
@@ -14,8 +14,8 @@ export default [
     component: PostLogin
   },
   { 
-   name: 'admin', // TODO: add router guard with permissions check
-   path: '/admin',
-   component: Admin
+   name: 'user', // TODO: add router guard with permissions check
+   path: '/user',
+   component: User
   }
 ]
