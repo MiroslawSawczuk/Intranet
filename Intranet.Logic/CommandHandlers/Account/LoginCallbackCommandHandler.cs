@@ -1,8 +1,9 @@
 using BaseRepository.Repositories;
 using Cqrs.Commands;
-using Cqrs.Validators;
 using Intranet.Authentication.Tokens;
+using Intranet.Users.Enums;
 using Intranet.Users.Models;
+using Intranet.Users.Repositories;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Security.Claims;
@@ -19,34 +20,34 @@ namespace Intranet.Logic.CommandHandlers.Account
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly ITokenBuilder tokenBuilder;
         private readonly IWriteRepository<User> writeUserRepository;
-        private readonly IReadRepository<User> readUserRepository;
+        private readonly IReadUserRepository readUserRepository;
 
         public LoginCallbackCommandHandler(IHttpContextAccessor httpContextAccessor, ITokenBuilder tokenBuilder,
-            IWriteRepository<User> writeUserRepository, IReadRepository<User> readUserRepository)
+            IWriteRepository<User> writeUserRepository, IReadUserRepository readUserRepository)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.tokenBuilder = tokenBuilder;
             this.writeUserRepository = writeUserRepository;
             this.readUserRepository = readUserRepository;
         }
-        
+
         public override async Task ExecuteAsync(LoginCallbackCommand command)
         {
             var userEmail = httpContextAccessor.HttpContext.User.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value;
+            User user = await readUserRepository.GetByEmail(userEmail);
 
-            var userId = await readUserRepository.GetAsync(
-                where: u => u.Email.Equals(userEmail),
-                select: u => u.Id);
-
-            string id = null;
-            if (userId == null)
+            if (user.Id == null)
             {
-                id = await writeUserRepository.CreateAsync(
-                    create: u => u.Email = userEmail,
+                user.Id = await writeUserRepository.CreateAsync(
+                    create: u =>
+                    {
+                        u.Email = userEmail;
+                        u.Permission = Permission.User;
+                    },
                     keySelect: u => u.Id);
             }
 
-            Body = tokenBuilder.BuildToken(id ?? userId, userEmail);
+            Body = tokenBuilder.BuildToken(user.Id, userEmail, Permission.User);
         }
     }
 }

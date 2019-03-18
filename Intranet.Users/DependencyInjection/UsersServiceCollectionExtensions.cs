@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using BaseRepository.Repositories;
+﻿using BaseRepository.Repositories;
 using Intranet.Users.Contexts;
-using Intranet.Users.Models;
-using Intranet.Users.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Intranet.Users.DependencyInjection
 {
@@ -42,7 +40,7 @@ namespace Intranet.Users.DependencyInjection
 
                 services.AddScoped(interfaceType, readRepository);
             }
-            
+
             var writeRepositories = assembly.GetTypes()
                 .Where(t => !t.IsAbstract && !t.IsInterface && t.BaseType != null
                             && t.BaseType.IsGenericType && t.BaseType.GetGenericTypeDefinition() == typeof(WriteRepositoryBase<,>))

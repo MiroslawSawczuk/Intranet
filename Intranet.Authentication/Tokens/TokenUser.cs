@@ -1,6 +1,7 @@
+using Intranet.Users.Enums;
+using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
 
 namespace Intranet.Authentication.Tokens
 {
@@ -8,6 +9,7 @@ namespace Intranet.Authentication.Tokens
     {
         public string Id { get; }
         public string Email { get; }
+        public string Role { get; }
 
         public TokenUser(IHttpContextAccessor context)
         {
@@ -15,11 +17,13 @@ namespace Intranet.Authentication.Tokens
             {
                 Id = context.HttpContext.User.Claims.First(c => c.Type.Equals(ClaimTypes.NameIdentifier)).Value;
                 Email = context.HttpContext.User.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value;
+                Role = context.HttpContext.User.Claims.First(c => c.Type.Equals(ClaimTypes.Role)).Value;
             }
             else
             {
                 Id = null;
                 Email = null;
+                Role = Permission.User.ToString();
             }
         }
     }

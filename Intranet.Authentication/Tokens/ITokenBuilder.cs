@@ -1,11 +1,12 @@
+using Intranet.Users.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace Intranet.Authentication.Tokens
 {
     public interface ITokenBuilder
     {
         string BuildToken(string id, string email);
-        string BuildToken(string id, string email, out DateTime expiration);
+        string BuildToken(string id, string email, Permission role);
+        string BuildToken(string id, string email, Permission role, out DateTime expiration);
     }
 }
