@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
 using Cqrs.Executors;
 using Intranet.Logic.CommandHandlers.Identity;
 using Intranet.Logic.QueryHandlers.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Intranet.Web.Controllers
 {
@@ -23,10 +23,10 @@ namespace Intranet.Web.Controllers
 
         [Authorize]
         [Route("user-props")]
-        public async Task<IActionResult> UserProp(UserPropsQuery query) => await executor.QueryAsync<UserPropsQuery, UserPropsDto>(query);
+        public async Task<IActionResult> UserProps(UserPropsQuery query) => await executor.QueryAsync<UserPropsQuery, UserPropsDto>(query);
 
         [Authorize]
         [HttpPatch("update-user-props")]
-        public async Task<IActionResult> UpdateUserProp([FromBody]UpdateUserPropsCommand command) => await executor.HandleAsync(command);
+        public async Task<IActionResult> UpdateUserProps([FromBody]UpdateUserPropsCommand command) => await executor.HandleAsync(command);
     }
 }

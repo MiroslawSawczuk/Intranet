@@ -4,7 +4,7 @@ using Intranet.Users.Models;
 
 namespace Intranet.Users.Repositories
 {
-    public class WriteUserRepository : WriteRepositoryBase<User, UsersContext>
+    public class WriteUserRepository : WriteRepositoryBase<User, UsersContext> , IWriteUserRepository
     {
         public WriteUserRepository(UsersContext context) : base(context)
         {

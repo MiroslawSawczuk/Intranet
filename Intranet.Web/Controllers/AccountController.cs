@@ -1,10 +1,9 @@
-using System.Threading.Tasks;
 using Cqrs.Executors;
-using Intranet.Authentication.Tokens;
 using Intranet.Logic.CommandHandlers.Account;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Intranet.Web.Controllers
 {
@@ -24,6 +23,5 @@ namespace Intranet.Web.Controllers
         [HttpGet("external-login-callback")]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public async Task<IActionResult> LoginCallback(LoginCallbackCommand command) => await executor.HandleAsync(command);
-        // test
     }
 }

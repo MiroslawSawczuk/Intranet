@@ -55,6 +55,13 @@ export default {
         this.$store.commit(IDENTITY_UPDATE, { firstName: this.firstNameEdit, lastName: this.lastNameEdit });
         this.showUserProp = !this.showUserProp;
       }
+      else{
+         swal({
+            title: 'Warning',
+            text: 'You must complete all your data',
+            icon: "warning",
+      });
+      }
     }
   },
   computed: {

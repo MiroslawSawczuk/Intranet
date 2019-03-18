@@ -1,4 +1,3 @@
-using BaseRepository.Repositories;
 using Cqrs.Commands;
 using Intranet.Authentication.Tokens;
 using Intranet.Users.Enums;
@@ -19,11 +18,11 @@ namespace Intranet.Logic.CommandHandlers.Account
     {
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly ITokenBuilder tokenBuilder;
-        private readonly IWriteRepository<User> writeUserRepository;
+        private readonly IWriteUserRepository writeUserRepository;
         private readonly IReadUserRepository readUserRepository;
 
         public LoginCallbackCommandHandler(IHttpContextAccessor httpContextAccessor, ITokenBuilder tokenBuilder,
-            IWriteRepository<User> writeUserRepository, IReadUserRepository readUserRepository)
+            IWriteUserRepository writeUserRepository, IReadUserRepository readUserRepository)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.tokenBuilder = tokenBuilder;
@@ -47,7 +46,7 @@ namespace Intranet.Logic.CommandHandlers.Account
                     keySelect: u => u.Id);
             }
 
-            Body = tokenBuilder.BuildToken(user.Id, userEmail, Permission.User);
+            Body = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission);
         }
     }
 }

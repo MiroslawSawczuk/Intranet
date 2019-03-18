@@ -1,8 +1,6 @@
-﻿using BaseRepository.Repositories;
-using Cqrs.Queries;
-using Cqrs.Validators;
+﻿using Cqrs.Queries;
 using Intranet.Authentication.Tokens;
-using Intranet.Users.Models;
+using Intranet.Users.Repositories;
 using System.Threading.Tasks;
 
 namespace Intranet.Logic.QueryHandlers.Identity
@@ -14,9 +12,9 @@ namespace Intranet.Logic.QueryHandlers.Identity
     internal class UserPropsQueryHandler : AsyncQueryHandlerBase<UserPropsQuery, UserPropsDto>
     {
         private readonly ITokenUser tokenUser;
-        private readonly IReadRepository<User> readUserRepository;
+        private readonly IReadUserRepository readUserRepository;
 
-        public UserPropsQueryHandler(ITokenUser tokenUser, IReadRepository<User> readUserRepository)
+        public UserPropsQueryHandler(ITokenUser tokenUser, IReadUserRepository readUserRepository)
         {
             this.tokenUser = tokenUser;
             this.readUserRepository = readUserRepository;

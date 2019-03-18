@@ -1,8 +1,6 @@
-﻿using BaseRepository.Repositories;
-using Cqrs.Commands;
-using Cqrs.Validators;
+﻿using Cqrs.Commands;
 using Intranet.Authentication.Tokens;
-using Intranet.Users.Models;
+using Intranet.Users.Repositories;
 using System.Threading.Tasks;
 
 namespace Intranet.Logic.CommandHandlers.Identity
@@ -16,9 +14,9 @@ namespace Intranet.Logic.CommandHandlers.Identity
     internal class UpdateUserPropsCommandHandler : AsyncCommandHandlerBase<UpdateUserPropsCommand>
     {
         private readonly ITokenUser tokenUser;
-        private readonly IWriteRepository<User> writeUserRepository;
+        private readonly IWriteUserRepository writeUserRepository;
 
-        public UpdateUserPropsCommandHandler(ITokenUser tokenUser, IWriteRepository<User> writeUserRepository)
+        public UpdateUserPropsCommandHandler(ITokenUser tokenUser, IWriteUserRepository writeUserRepository)
         {
             this.tokenUser = tokenUser;
             this.writeUserRepository = writeUserRepository;

@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     ...mapState({ 
-      firstName: state => state.identity.firstName
+      firstName: state => state.identity.firstName ? state.identity.firstName : state.identity.email
     })
   }
 }

@@ -34,9 +34,8 @@ namespace Intranet.Users.DependencyInjection
 
             foreach (var readRepository in readRepositories)
             {
-                var arguments = readRepository.BaseType.GetGenericArguments();
-                var modelType = arguments[0];
-                var interfaceType = typeof(IReadRepository<>).MakeGenericType(modelType);
+                var interfaceType = readRepository.GetInterfaces()
+                    .FirstOrDefault(i => i.GetInterfaces().Any(ii => ii.GetGenericTypeDefinition() == typeof(IReadRepository<>)));
 
                 services.AddScoped(interfaceType, readRepository);
             }
@@ -49,9 +48,8 @@ namespace Intranet.Users.DependencyInjection
 
             foreach (var writeRepository in writeRepositories)
             {
-                var arguments = writeRepository.BaseType.GetGenericArguments();
-                var modelType = arguments[0];
-                var interfaceType = typeof(IWriteRepository<>).MakeGenericType(modelType);
+                var interfaceType = writeRepository.GetInterfaces()
+                    .FirstOrDefault(i => i.GetInterfaces().Any(ii => ii.GetGenericTypeDefinition() == typeof(IWriteRepository<>)));
 
                 services.AddScoped(interfaceType, writeRepository);
             }
