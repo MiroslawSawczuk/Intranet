@@ -9,5 +9,8 @@ namespace Intranet.Users.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public Permission Permission { get; set; }
+
+        public long TenantId { get; set; }
+        public virtual Tenant Tenant { get; set; }
     }
 }
