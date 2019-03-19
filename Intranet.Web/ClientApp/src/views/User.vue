@@ -17,7 +17,7 @@ import UserPropEdit from './../components/User/UserPropEdit.vue'
 import { mapState } from 'vuex';
 
 export default {
-  name: 'app',
+  name: 'User',
   components: {
     UserPropEdit
   },

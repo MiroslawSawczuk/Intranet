@@ -11,19 +11,21 @@ const state = {
 
 const mutations = {
   [IDENTITY_LOGIN] (state) {
-    AccountService.loginCallback().then(response => {
-      localStorage.token = response.body;
-      IdentityService.userProps().then(response2 => {
-        state.isAuthenticated = true;
-        state.email = response2.body.email;
-        state.firstName = response2.body.firstName;
-        state.lastName = response2.body.lastName;
-      });
-    });
+          AccountService.loginCallback().then(response => {
+              localStorage.token = response.body;
+              IdentityService.userProps().then(response2 => {
+                  state.isAuthenticated = true;
+                  state.email = response2.body.email;
+                  state.firstName = response2.body.firstName;
+                  state.lastName = response2.body.lastName;
+              });
+          });
   },
   [IDENTITY_LOGOUT] (state) {
     localStorage.removeItem('token');
     state.firstName = '';
+    state.lastName = '';
+    state.email = '';
     state.isAuthenticated = false;
   },
   [IDENTITY_FETCH] (state) {

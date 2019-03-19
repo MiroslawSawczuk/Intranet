@@ -6,6 +6,6 @@ namespace Intranet.Users.Repositories
 {
     public interface IReadUserRepository : IReadRepository<User>
     {
-        Task<User> GetByEmail(string email);
+        Task<User> Get(string email);
     }
 }

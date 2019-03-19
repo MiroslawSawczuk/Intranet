@@ -33,7 +33,7 @@ namespace Intranet.Logic.CommandHandlers.Account
         public override async Task ExecuteAsync(LoginCallbackCommand command)
         {
             var userEmail = httpContextAccessor.HttpContext.User.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value;
-            User user = await readUserRepository.GetByEmail(userEmail);
+            User user = await readUserRepository.Get(userEmail);
 
             if (user.Id == null)
             {

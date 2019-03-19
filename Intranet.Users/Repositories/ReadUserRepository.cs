@@ -15,7 +15,7 @@ namespace Intranet.Users.Repositories
             this.userContext = userContext;
         }
 
-        public async Task<User> GetByEmail(string email)
+        public async Task<User> Get(string email)
         {
             return await userContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(email));
         }
