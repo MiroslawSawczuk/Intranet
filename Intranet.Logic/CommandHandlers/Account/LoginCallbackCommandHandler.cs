@@ -44,9 +44,14 @@ namespace Intranet.Logic.CommandHandlers.Account
                         u.Permission = Permission.User;
                     },
                     keySelect: u => u.Id);
+
+                Body = tokenBuilder.BuildToken(user.Id, userEmail, Permission.User, "");
+            }
+            else
+            {
+                Body = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission, user.TenantId);
             }
 
-            Body = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission);
         }
     }
 }
