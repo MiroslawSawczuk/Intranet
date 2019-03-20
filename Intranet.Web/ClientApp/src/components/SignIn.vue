@@ -23,18 +23,20 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import { IDENTITY_FETCH, IDENTITY_LOGOUT } from '@/store/mutations.js';
+//import { IDENTITY_LOGOUT } from '@/store/mutations.js';
+import { IDENTITY_FETCH, IDENTITY_LOGOUT } from '@/store/actions.js';
 
 export default {
   name: 'SignIn',
   methods:{
     logout() {
-      this.$store.commit(IDENTITY_LOGOUT);
+      this.$store.dispatch(IDENTITY_LOGOUT);
     }
   },
   created() {
     if (localStorage.token) {
-      this.$store.commit(IDENTITY_FETCH);
+      //this.$store.commit(IDENTITY_FETCH);
+      this.$store.dispatch(IDENTITY_FETCH);
     }
   },
   computed: {

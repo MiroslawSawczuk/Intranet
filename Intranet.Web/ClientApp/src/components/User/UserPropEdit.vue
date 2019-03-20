@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import { IDENTITY_UPDATE, IDENTITY_FETCH } from '@/store/mutations.js';
 import { mapState } from 'vuex';
+import { IDENTITY_FETCH, IDENTITY_UPDATE } from '@/store/actions.js';
 
 export default {
   name: 'UserPropEdit',
@@ -42,7 +42,8 @@ export default {
     fetch() {
       if (!this.showUserProp) {
         if (!this.email || !this.firstName || !this.lastName){
-          this.$store.commit(IDENTITY_FETCH);
+         // this.$store.commit(IDENTITY_FETCH);
+           this.$store.dispatch(IDENTITY_FETCH);
         }
         this.emailEdit = this.email;
         this.firstNameEdit = this.firstName;
@@ -52,7 +53,7 @@ export default {
     },
     save() {
       if (this.firstNameEdit && this.lastNameEdit) {
-        this.$store.commit(IDENTITY_UPDATE, { firstName: this.firstNameEdit, lastName: this.lastNameEdit });
+        this.$store.dispatch(IDENTITY_UPDATE, { firstName: this.firstNameEdit, lastName: this.lastNameEdit });
         this.showUserProp = !this.showUserProp;
       }
       else{

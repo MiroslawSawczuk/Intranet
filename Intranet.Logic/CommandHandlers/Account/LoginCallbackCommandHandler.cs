@@ -45,11 +45,11 @@ namespace Intranet.Logic.CommandHandlers.Account
                     },
                     keySelect: u => u.Id);
 
-                Body = tokenBuilder.BuildToken(user.Id, userEmail, Permission.User, "");
+                Body = tokenBuilder.BuildToken(user.Id, userEmail, Permission.User, string.Empty);
             }
             else
             {
-                Body = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission, user.TenantId);
+                Body = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission, user.TenantId ?? string.Empty);
             }
 
         }
