@@ -16,7 +16,7 @@ namespace Intranet.Logic.CommandHandlers.Account
         {
             var authenticationProperties = new AuthenticationProperties
             {
-                RedirectUri = "/post-login"
+                RedirectUri = "/post-login",
             };
 
             Body = new ChallengeResult(new List<string> { "Microsoft" }, authenticationProperties);

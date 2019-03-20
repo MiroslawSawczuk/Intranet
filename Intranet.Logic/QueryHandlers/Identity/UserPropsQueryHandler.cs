@@ -28,7 +28,8 @@ namespace Intranet.Logic.QueryHandlers.Identity
                 {
                     Email = u.Email,
                     FirstName = u.FirstName,
-                    LastName = u.LastName
+                    LastName = u.LastName,
+                    TenantId = u.TenantId
                 });
         }
     }
@@ -36,6 +37,7 @@ namespace Intranet.Logic.QueryHandlers.Identity
     public class UserPropsDto
     {
         public string Email { get; set; }
+        public string TenantId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }

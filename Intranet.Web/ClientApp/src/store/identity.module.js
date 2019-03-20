@@ -40,15 +40,27 @@ const actions = {
   },
   [IDENTITY_LOGIN] (context) {
     AccountService.loginCallback().then(response => {
-      localStorage.token = response.body;
-      context.dispatch(DECODE_TOKEN, response.body);
-      
-        if(context.getters.tenantId == '') { 
-          //router.push({ name: 'pagenotfound' });
-        }
-        else{
-          context.dispatch(IDENTITY_FETCH);
-        }
+      var email=response.body.email;
+      var tokenUser=response.body.tokenUser;
+      context.commit(IDENTITY_SAVEUSERPROPS, 
+        {
+          email: email
+        });
+
+      if(tokenUser != null) {
+        localStorage.token = tokenUser;
+        context.dispatch(DECODE_TOKEN, tokenUser);
+        
+          if(context.getters.tenantId == '') { 
+            router.push({ name: 'firstconfiguration' });
+          }
+          else{
+            context.dispatch(IDENTITY_FETCH);
+          }
+      }
+      else{
+        router.push({ name: 'firstconfiguration' });
+      }
     });
   },
   [IDENTITY_LOGOUT] (context) {
@@ -62,7 +74,8 @@ const actions = {
             isAuthenticated : true,
             email : response.body.email,
             firstName : response.body.firstName,
-            lastName : response.body.lastName
+            lastName : response.body.lastName,
+            tenantId: response.body.tenantId
           }
         );
     });

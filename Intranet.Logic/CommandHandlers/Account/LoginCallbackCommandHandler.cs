@@ -1,7 +1,5 @@
 using Cqrs.Commands;
 using Intranet.Authentication.Tokens;
-using Intranet.Users.Enums;
-using Intranet.Users.Models;
 using Intranet.Users.Repositories;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
@@ -33,25 +31,40 @@ namespace Intranet.Logic.CommandHandlers.Account
         public override async Task ExecuteAsync(LoginCallbackCommand command)
         {
             var userEmail = httpContextAccessor.HttpContext.User.Claims.First(c => c.Type.Equals(ClaimTypes.Email)).Value;
-            User user = await readUserRepository.Get(userEmail);
+            var user = await readUserRepository.Get(userEmail);
 
-            if (user.Id == null)
+            if (user == null)
             {
-                user.Id = await writeUserRepository.CreateAsync(
-                    create: u =>
-                    {
-                        u.Email = userEmail;
-                        u.Permission = Permission.User;
-                    },
-                    keySelect: u => u.Id);
+                //var id = await writeUserRepository.CreateAsync(
+                //    create: u =>
+                //    {
+                //        u.Email = userEmail;
+                //        u.Permission = Permission.User;
+                //    },
+                //    keySelect: u => u.Id);
 
-                Body = tokenBuilder.BuildToken(user.Id, userEmail, Permission.User, string.Empty);
+                //Body = tokenBuilder.BuildToken(id, userEmail, Permission.User, string.Empty);
+
+                Body = new LoginResponseDto()
+                {
+                    Email = userEmail
+                };
+
             }
             else
             {
-                Body = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission, user.TenantId ?? string.Empty);
+                Body = new LoginResponseDto()
+                {
+                    Email = userEmail,
+                    TokenUser = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission, user.TenantId ?? string.Empty)
+                };
             }
-
         }
+    }
+
+    public class LoginResponseDto
+    {
+        public string Email { get; set; }
+        public string TokenUser { get; set; }
     }
 }
