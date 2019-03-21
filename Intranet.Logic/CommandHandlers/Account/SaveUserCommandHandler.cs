@@ -1,10 +1,9 @@
 using Cqrs.Commands;
+using Cqrs.Validators;
 using Intranet.Authentication.Tokens;
 using Intranet.Users.Enums;
 using Intranet.Users.Repositories;
 using System.Threading.Tasks;
-using Cqrs.Validators;
-using Remotion.Linq.Clauses;
 
 namespace Intranet.Logic.CommandHandlers.Account
 {

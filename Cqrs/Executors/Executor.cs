@@ -1,14 +1,10 @@
 ﻿using Cqrs.Commands;
+using Cqrs.Queries;
 using Cqrs.Validators;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Cqrs.Queries;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Cqrs.Executors
 {

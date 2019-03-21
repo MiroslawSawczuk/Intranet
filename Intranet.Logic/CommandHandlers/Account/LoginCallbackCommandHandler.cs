@@ -35,21 +35,10 @@ namespace Intranet.Logic.CommandHandlers.Account
 
             if (user == null)
             {
-                //var id = await writeUserRepository.CreateAsync(
-                //    create: u =>
-                //    {
-                //        u.Email = userEmail;
-                //        u.Permission = Permission.User;
-                //    },
-                //    keySelect: u => u.Id);
-
-                //Body = tokenBuilder.BuildToken(id, userEmail, Permission.User, string.Empty);
-
                 Body = new LoginResponseDto()
                 {
                     Email = userEmail
                 };
-
             }
             else
             {

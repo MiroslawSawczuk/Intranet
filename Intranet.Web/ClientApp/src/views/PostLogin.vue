@@ -2,7 +2,6 @@
 </template>
 
 <script>
-//import { IDENTITY_LOGIN } from '@/store/mutations.js';
 import { IDENTITY_LOGIN } from '@/store/actions.js';
 
 export default {
@@ -10,11 +9,10 @@ export default {
   created() {
     this.$store.dispatch(IDENTITY_LOGIN);
     this.$router.push({ name: 'home' });
-
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>

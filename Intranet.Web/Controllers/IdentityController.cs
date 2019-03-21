@@ -16,7 +16,7 @@ namespace Intranet.Web.Controllers
         {
             this.executor = executor;
         }
-        
+
         [Authorize]
         [Route("name")]
         public async Task<IActionResult> Name(NameQuery query) => await executor.QueryAsync<NameQuery, string>(query);

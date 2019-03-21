@@ -5,6 +5,5 @@ namespace Intranet.Users.Repositories
 {
     public interface IWriteUserRepository : IWriteRepository<User>
     {
-        
     }
 }

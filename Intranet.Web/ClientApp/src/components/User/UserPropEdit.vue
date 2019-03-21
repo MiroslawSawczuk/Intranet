@@ -12,7 +12,7 @@
         <input :value="emailEdit" class="form-control" placeholder="Enter email" type="text" disabled/>
       </div>
       <div class="form-group">
-        <label for="firstNameEdit">Name</label><br/>
+        <label for="firstNameEdit">First name</label><br/>
         <input v-model="firstNameEdit" class="form-control" placeholder="Enter first name" type="text" required/>
       </div>
       <div class="form-group">

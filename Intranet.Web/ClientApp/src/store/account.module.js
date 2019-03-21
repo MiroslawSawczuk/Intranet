@@ -1,5 +1,5 @@
 import AccountService from '@/services/account.service';
-import { ACCOUNT_SAVEUSER, IDENTITY_FETCH } from '@/store/actions.js';
+import { ACCOUNT_SAVEUSER } from '@/store/actions.js';
 
 const state = {
   isAuthenticated: !!localStorage.token,
@@ -9,28 +9,24 @@ const state = {
   tenantId: ''
 };
 
-const mutations = {
-  
-};
 const actions = {
   [ACCOUNT_SAVEUSER] (context, userProps) {
-      return new Promise((resolve, reject) => {
-          AccountService.saveUser(userProps.email, userProps.tenantId, userProps.firstName, userProps.lastName)
-          .then(response => {
+    return new Promise((resolve, reject) => {
+        AccountService.saveUser(userProps.email, userProps.tenantId, userProps.firstName, userProps.lastName)
+        .then(response => {
 
-            localStorage.token = response.body;
-            resolve(response);
+          localStorage.token = response.body;
+          resolve(response);
 
-          }, error => {
-            reject(error);
-          })
-      })
+        }, error => {
+          reject(error);
+        })
+    })
   }
 };
 
 
 export default {
   state,
-  mutations,
   actions
 };

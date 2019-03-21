@@ -37,8 +37,8 @@ namespace Intranet.Logic.QueryHandlers.Identity
     public class UserPropsDto
     {
         public string Email { get; set; }
-        public string TenantId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string TenantId { get; set; }
     }
 }

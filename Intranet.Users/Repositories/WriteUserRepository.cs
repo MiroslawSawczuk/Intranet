@@ -6,7 +6,7 @@ namespace Intranet.Users.Repositories
 {
     public class WriteUserRepository : WriteRepositoryBase<User, UsersContext> , IWriteUserRepository
     {
-        public WriteUserRepository(UsersContext context) : base(context)
+        public WriteUserRepository(UsersContext userContext) : base(userContext)
         {
         }
     }

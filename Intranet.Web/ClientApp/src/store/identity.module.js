@@ -34,17 +34,18 @@ const mutations = {
     state.tenantId = decodedToken.TenantId;
   }
 };
+
 const actions = {
-  [REDIRECT_NOTFOUND] (context) {
+  [REDIRECT_NOTFOUND] () {
     router.push({ name: 'pagenotfound' });
   },
   [IDENTITY_LOGIN] (context) {
     AccountService.loginCallback().then(response => {
-      var email=response.body.email;
       var token=response.body.token;
+      
       context.commit(IDENTITY_SAVEUSERPROPS, 
         {
-          email: email
+          email: response.body.email
         });
 
       if(token != null) {
