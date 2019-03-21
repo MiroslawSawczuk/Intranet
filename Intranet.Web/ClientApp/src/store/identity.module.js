@@ -1,7 +1,7 @@
 import IdentityService from '@/services/identity.service';
 import AccountService from '@/services/account.service';
 import { IDENTITY_SAVEUSERPROPS, IDENTITY_REMOVEUSERPROPS, IDENTITY_UPDATEUSERPROPS, IDENTITY_SAVETENANTID } from '@/store/mutations.js';
-import { IDENTITY_FETCH, REDIRECT_NOTFOUND, IDENTITY_LOGIN, IDENTITY_LOGOUT, IDENTITY_UPDATE, DECODE_TOKEN } from '@/store/actions.js';
+import { TEST, IDENTITY_FETCH, REDIRECT_NOTFOUND, IDENTITY_LOGIN, IDENTITY_LOGOUT, IDENTITY_UPDATE, DECODE_TOKEN, IDENTITY_AUTHENTICATION } from '@/store/actions.js';
 import { router } from '@/main.js';
 
 const state = {
@@ -40,46 +40,53 @@ const actions = {
     router.push({ name: 'pagenotfound' });
   },
   [IDENTITY_LOGIN] (context) {
-    AccountService.loginCallback().then(response => {
-      var token=response.body.token;
-      
-      context.commit(IDENTITY_SAVEUSERPROPS, 
-        {
-          email: response.body.email
-        });
+    return new Promise((resolve, reject) => {
+      AccountService.loginCallback().then(response => {
+        var token=response.body.token;
 
-      if(token != null) {
-        localStorage.token = token;
-        context.dispatch(DECODE_TOKEN, token);
-        
-          if(context.getters.tenantId == '') { 
-            router.push({ name: 'firstconfiguration' });
-          }
-          else{
-            context.dispatch(IDENTITY_FETCH);
-          }
-      }
-      else{
-        router.push({ name: 'firstconfiguration' });
-      }
-    });
+        context.commit(IDENTITY_SAVEUSERPROPS, 
+          {
+            email: response.body.email
+          });
+
+        if(token != null) {
+          localStorage.token = token;
+          context.dispatch(DECODE_TOKEN, token);
+
+            if(context.getters.tenantId == '') { 
+              router.push({ name: 'firstconfiguration' });
+            }
+            else{
+              resolve(context.dispatch(IDENTITY_FETCH));
+            }
+        }
+        else{
+          router.push({ name: 'firstconfiguration' });
+        }
+      });
+    })
   },
   [IDENTITY_LOGOUT] (context) {
     localStorage.removeItem('token');
-    context.commit(IDENTITY_REMOVEUSERPROPS);
+    context.commit(IDENTITY_REMOVEUSERPROPS).then(()=>{
+      router.push({ name: 'startpage' });
+    });
   },
   [IDENTITY_FETCH] (context) {
-    IdentityService.userProps().then(response => {
-      context.commit(IDENTITY_SAVEUSERPROPS, 
+    return new Promise((resolve, reject) => {
+      IdentityService.userProps().then(response => {
+
+        resolve(context.commit(IDENTITY_SAVEUSERPROPS, 
           {
             isAuthenticated : true,
             email : response.body.email,
             firstName : response.body.firstName,
             lastName : response.body.lastName,
             tenantId: response.body.tenantId
-          }
+          })
         );
-    });
+      })
+    })
   },
   [IDENTITY_UPDATE] (context, userProps) {
     IdentityService.updateUserProps(userProps.firstName, userProps.lastName).then(() => {
@@ -98,6 +105,11 @@ const actions = {
     var decodedToken = JSON.parse(window.atob(base64));
 
     context.commit(IDENTITY_SAVETENANTID, decodedToken)
+  },
+  [IDENTITY_AUTHENTICATION] (context) {
+    if(!context.getters.isAuthenticated) {
+      router.push({ name: 'startpage' });
+    }
   }
 };
 
@@ -107,6 +119,9 @@ const getters = {
   },
   email: (state) => {
     return state.email;
+  },
+  isAuthenticated: (state) => {
+    return state.isAuthenticated;
   }
 }
 
