@@ -45,7 +45,7 @@ namespace Intranet.Logic.CommandHandlers.Account
                 Body = new LoginResponseDto()
                 {
                     Email = userEmail,
-                    TokenUser = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission, user.TenantId ?? string.Empty)
+                    Token = tokenBuilder.BuildToken(user.Id, user.Email, user.Permission, user.TenantId ?? string.Empty)
                 };
             }
         }
@@ -54,6 +54,6 @@ namespace Intranet.Logic.CommandHandlers.Account
     public class LoginResponseDto
     {
         public string Email { get; set; }
-        public string TokenUser { get; set; }
+        public string Token { get; set; }
     }
 }
