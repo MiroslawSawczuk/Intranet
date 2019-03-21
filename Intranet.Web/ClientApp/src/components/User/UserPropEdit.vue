@@ -16,7 +16,7 @@
         <input v-model="firstNameEdit" class="form-control" placeholder="Enter first name" type="text" required/>
       </div>
       <div class="form-group">
-        <label for="lastNameEdit">Surname</label><br/>
+        <label for="lastNameEdit">Last name</label><br/>
         <input v-model="lastNameEdit" class="form-control" placeholder="Enter last name" type="text" required />
       </div>
 
@@ -42,7 +42,6 @@ export default {
     fetch() {
       if (!this.showUserProp) {
         if (!this.email || !this.firstName || !this.lastName){
-         // this.$store.commit(IDENTITY_FETCH);
            this.$store.dispatch(IDENTITY_FETCH);
         }
         this.emailEdit = this.email;

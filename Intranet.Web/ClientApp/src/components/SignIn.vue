@@ -22,8 +22,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
-//import { IDENTITY_LOGOUT } from '@/store/mutations.js';
+import { mapState } from 'vuex';
 import { IDENTITY_FETCH, IDENTITY_LOGOUT } from '@/store/actions.js';
 
 export default {
@@ -35,7 +34,6 @@ export default {
   },
   created() {
     if (localStorage.token) {
-      //this.$store.commit(IDENTITY_FETCH);
       this.$store.dispatch(IDENTITY_FETCH);
     }
   },

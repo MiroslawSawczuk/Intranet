@@ -41,15 +41,15 @@ const actions = {
   [IDENTITY_LOGIN] (context) {
     AccountService.loginCallback().then(response => {
       var email=response.body.email;
-      var tokenUser=response.body.tokenUser;
+      var token=response.body.token;
       context.commit(IDENTITY_SAVEUSERPROPS, 
         {
           email: email
         });
 
-      if(tokenUser != null) {
-        localStorage.token = tokenUser;
-        context.dispatch(DECODE_TOKEN, tokenUser);
+      if(token != null) {
+        localStorage.token = token;
+        context.dispatch(DECODE_TOKEN, token);
         
           if(context.getters.tenantId == '') { 
             router.push({ name: 'firstconfiguration' });
@@ -101,8 +101,11 @@ const actions = {
 };
 
 const getters = {
-  tenantId: (state, getters) => {
+  tenantId: (state) => {
     return state.tenantId;
+  },
+  email: (state) => {
+    return state.email;
   }
 }
 

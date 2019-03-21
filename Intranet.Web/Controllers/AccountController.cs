@@ -23,5 +23,9 @@ namespace Intranet.Web.Controllers
         [HttpGet("external-login-callback")]
         [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public async Task<IActionResult> LoginCallback(LoginCallbackCommand command) => await executor.HandleAsync(command);
+
+        [HttpPost("save-user")]
+        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> SaveUser([FromBody]SaveUserCommand command) => await executor.HandleAsync(command);
     }
 }

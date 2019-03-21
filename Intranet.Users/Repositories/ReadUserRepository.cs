@@ -15,9 +15,15 @@ namespace Intranet.Users.Repositories
             this.userContext = userContext;
         }
 
+        //TODO Refactor
         public async Task<User> Get(string email)
         {
             return await userContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(email));
+
+            //remove this method and use this when is triggered:
+            //return await readUserRepository.GetAsync(
+            //    where: u => u.Id.Equals(tokenUser.Id),
+            //    select: u => u.FirstName ?? u.Email);
         }
     }
 }

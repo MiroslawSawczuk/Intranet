@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cqrs.Queries;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Cqrs.Executors
 {
@@ -26,7 +28,7 @@ namespace Cqrs.Executors
             commandHandler.Validate(command, validationResult);
             if (validationResult.Errors.Count > 0)
             {
-                return new BadRequestResult();
+                return new BadRequestObjectResult(error: validationResult.Errors);
             }
             commandHandler.Execute(command);
 
@@ -43,7 +45,7 @@ namespace Cqrs.Executors
             await commandHandler.ValidateAsync(command, validationResult);
             if (validationResult.Errors.Count > 0)
             {
-                return new BadRequestResult();
+                return new BadRequestObjectResult(error: validationResult.Errors);
             }
             await commandHandler.ExecuteAsync(command);
 
@@ -60,7 +62,7 @@ namespace Cqrs.Executors
             queryHandler.Validate(query, validationResult);
             if (validationResult.Errors.Count > 0)
             {
-                return new BadRequestResult();
+                return new BadRequestObjectResult(error: validationResult.Errors);
             }
 
             return new OkObjectResult(queryHandler.Execute(query));
@@ -73,7 +75,7 @@ namespace Cqrs.Executors
             await queryHandler.ValidateAsync(query, validationResult);
             if (validationResult.Errors.Count > 0)
             {
-                return new BadRequestResult();
+                return new BadRequestObjectResult(error: validationResult.Errors);
             }
 
             return new OkObjectResult(await queryHandler.ExecuteAsync(query));
