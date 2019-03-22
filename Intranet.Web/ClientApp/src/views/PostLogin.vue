@@ -9,9 +9,9 @@ export default {
   created() {
     this.$store.dispatch(IDENTITY_LOGIN).then(()=> { 
 
-      setTimeout(() => {
-        this.$router.push({ name: 'home' });
-      },1000)
+      // setTimeout(() => {
+      //   this.$router.push({ name: 'home' });
+      // },1000)
     });
   }
 }

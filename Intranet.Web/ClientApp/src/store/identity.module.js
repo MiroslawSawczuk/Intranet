@@ -54,6 +54,10 @@ const actions = {
           localStorage.token = token;
           context.dispatch(DECODE_TOKEN, token);
 
+          
+          setTimeout(() => {
+            router.push({ name: 'home' });
+          },1000)
         }
         else {
           router.push({ name: 'firstconfiguration' });
