@@ -13,6 +13,11 @@ export default [
     component: HomePage 
   },
   { 
+    name: 'pagenotfound',
+    path: '*',
+    component: PageNotFound
+  },
+  { 
     name: 'postlogin',
     path: '/post-login',
     component: PostLogin
@@ -27,11 +32,7 @@ export default [
     path: '/first-configuration',
     component: FirstConfiguration
   },
-  { 
-    name: 'pagenotfound',
-    path: '/page-not-found',
-    component: PageNotFound
-  },
+  
   { 
     name: 'startpage',
     path: '/start-page',

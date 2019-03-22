@@ -6,7 +6,7 @@
       <br/>
       <user-prop-edit />
     </div>
-    <div v-else>
+    <div class="text-block" v-else>
       Sorry you must be logged to use User Panel!
     </div>
   </div>
@@ -30,4 +30,13 @@ export default {
 </script>
 
 <style lang="scss">
+.text-block{
+    font-size: 5rem;
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
 </style>
