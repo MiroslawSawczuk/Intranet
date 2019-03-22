@@ -40,43 +40,36 @@ const actions = {
     router.push({ name: 'pagenotfound' });
   },
   [IDENTITY_LOGIN] (context) {
-    return new Promise((resolve, reject) => {
-      AccountService.loginCallback().then(response => {
-        var token=response.body.token;
+       AccountService.loginCallback().then(response => {
+        
+        var token= response.body.token;
 
         context.commit(IDENTITY_SAVEUSERPROPS, 
-          {
-            email: response.body.email
-          });
+        {
+          email: response.body.email,
+          isAuthenticated: response.body.token ? true : false
+        });
 
-        if(token != null) {
+        if (token != null) {
           localStorage.token = token;
           context.dispatch(DECODE_TOKEN, token);
 
-            if(context.getters.tenantId == '') { 
-              router.push({ name: 'firstconfiguration' });
-            }
-            else{
-              resolve(context.dispatch(IDENTITY_FETCH));
-            }
         }
-        else{
+        else {
           router.push({ name: 'firstconfiguration' });
         }
-      });
-    })
+    });
   },
   [IDENTITY_LOGOUT] (context) {
     localStorage.removeItem('token');
-    context.commit(IDENTITY_REMOVEUSERPROPS).then(()=>{
+    context.commit(IDENTITY_REMOVEUSERPROPS);
       router.push({ name: 'startpage' });
-    });
+    
   },
   [IDENTITY_FETCH] (context) {
-    return new Promise((resolve, reject) => {
       IdentityService.userProps().then(response => {
 
-        resolve(context.commit(IDENTITY_SAVEUSERPROPS, 
+       context.commit(IDENTITY_SAVEUSERPROPS, 
           {
             isAuthenticated : true,
             email : response.body.email,
@@ -84,8 +77,6 @@ const actions = {
             lastName : response.body.lastName,
             tenantId: response.body.tenantId
           })
-        );
-      })
     })
   },
   [IDENTITY_UPDATE] (context, userProps) {

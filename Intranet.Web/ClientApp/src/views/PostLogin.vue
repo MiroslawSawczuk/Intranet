@@ -8,7 +8,10 @@ export default {
   name: 'PostLogin',
   created() {
     this.$store.dispatch(IDENTITY_LOGIN).then(()=> { 
-      this.$router.push({ name: 'home' });
+
+      setTimeout(() => {
+        this.$router.push({ name: 'home' });
+      },500)
     });
   }
 }
