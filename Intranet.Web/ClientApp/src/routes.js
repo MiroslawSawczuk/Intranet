@@ -3,6 +3,7 @@ import PostLogin from './views/PostLogin.vue';
 import User from './views/User.vue';
 import FirstConfiguration from './views/FirstConfiguration.vue';
 import PageNotFound from './views/Errors/PageNotFound.vue';
+import StartPage from './views/StartPage.vue';
 
 
 export default [
@@ -10,6 +11,11 @@ export default [
     name: 'home',
     path: '/',
     component: HomePage 
+  },
+  { 
+    name: 'pagenotfound',
+    path: '*',
+    component: PageNotFound
   },
   { 
     name: 'postlogin',
@@ -26,9 +32,10 @@ export default [
     path: '/first-configuration',
     component: FirstConfiguration
   },
+  
   { 
-    name: 'pagenotfound',
-    path: '/page-not-found',
-    component: PageNotFound
+    name: 'startpage',
+    path: '/start-page',
+    component: StartPage
   }
 ]

@@ -7,8 +7,12 @@ import { IDENTITY_LOGIN } from '@/store/actions.js';
 export default {
   name: 'PostLogin',
   created() {
-    this.$store.dispatch(IDENTITY_LOGIN);
-    this.$router.push({ name: 'home' });
+    this.$store.dispatch(IDENTITY_LOGIN).then(()=> { 
+
+      setTimeout(() => {
+        this.$router.push({ name: 'home' });
+      },500)
+    });
   }
 }
 </script>

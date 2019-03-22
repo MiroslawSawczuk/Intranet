@@ -50,14 +50,15 @@ export default {
             lastName: this.lastName
           })
           .then(response=> { 
-              this.$store.dispatch(IDENTITY_FETCH);
-              
-              swal({
-                title: 'Success!',
-                text: 'Successed saved new user. You wiil be redirected to the Home Page!',
-                icon: 'success'
-              }).then(function() {
-                router.push({ name: 'home' });
+              this.$store.dispatch(IDENTITY_FETCH).then(()=>{
+
+                swal({
+                  title: 'Success!',
+                  text: 'Successed saved new user. You wiil be redirected to the Home Page!',
+                  icon: 'success'
+                }).then(function() {
+                  router.push({ name: 'home' });
+                });
               });
           }, function(error) {
 					    swal({

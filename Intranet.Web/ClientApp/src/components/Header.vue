@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import SignIn from './SignIn.vue';
+import SignIn from '@/components/SignIn.vue';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
