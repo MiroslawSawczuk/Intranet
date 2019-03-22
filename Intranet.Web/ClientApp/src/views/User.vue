@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
     <div v-if="isAuthenticated">
+       <Header />
       Welcome to the User Panel!
       <br/>
       <br/>
@@ -13,13 +14,16 @@
 </template>
 
 <script>
-import UserPropEdit from './../components/User/UserPropEdit.vue'
+import UserPropEdit from '@/components/User/UserPropEdit.vue'
+import Header from '@/components/Header.vue'
+
 import { mapState } from 'vuex';
 
 export default {
   name: 'User',
   components: {
-    UserPropEdit
+    UserPropEdit,
+    Header
   },
   computed: {
     ...mapState({ 
